@@ -1,9 +1,9 @@
 package DTO;
 
 public class CardDTO {
-    String cardCode;
-    String cardName;
-    int cardNumber;
+    private String cardCode;
+   private String cardName;
+    private int cardNumber;
 
     public String getCardCode() {
         return cardCode;
