@@ -2,6 +2,7 @@ package View;
 
 import javax.swing.*;
 
+
 public class TextFieldGroup {
     public JTextField cardNameInput(){
         JTextField jt1 = new JTextField("This is jt1(cardName)");
@@ -14,8 +15,9 @@ public class TextFieldGroup {
         return jt2;
     }
     public JTextField cardAmountInput(){
-        JTextField jt3 = new JTextField("this is jt3(cardAmount)");
+        JTextField jt3 = new JTextField("This is jt3(cardAmount)");
         jt3.setBounds(50,350,150,25);
         return jt3;
     }
+
 }
