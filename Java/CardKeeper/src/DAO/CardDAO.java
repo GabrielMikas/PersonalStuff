@@ -2,6 +2,8 @@ package DAO;
 
 import DTO.CardDTO;
 
+import javax.swing.*;
+
 public class CardDAO {
     public void registerTest(CardDTO cardDTOobject){
         String name, code, amount;
