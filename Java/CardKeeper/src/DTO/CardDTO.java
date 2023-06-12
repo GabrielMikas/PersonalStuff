@@ -3,7 +3,7 @@ package DTO;
 public class CardDTO {
     private String cardCode;
    private String cardName;
-    private int cardNumber;
+    private String cardNumber;
 
     public String getCardCode() {
         return cardCode;
@@ -21,11 +21,11 @@ public class CardDTO {
         this.cardName = cardName;
     }
 
-    public int getCardNumber() {
+    public String  getCardNumber() {
         return cardNumber;
     }
 
-    public void setCardNumber(int cardNumber) {
+    public void setCardNumber(String cardNumber) {
         this.cardNumber = cardNumber;
     }
 }
