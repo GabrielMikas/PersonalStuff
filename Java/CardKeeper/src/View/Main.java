@@ -1,6 +1,7 @@
 package View;
 
 import DAO.CardDAO;
+import DAO.DBconnection;
 import DTO.CardDTO;
 import org.w3c.dom.Text;
 
