@@ -10,7 +10,7 @@ public class DBconnection {
         Connection connect = null;
         try{
             Class.forName("org.sqlite.JDBC");
-            DriverManager.getConnection("jdbc:sqlite:cardDB.db");
+           connect = DriverManager.getConnection("jdbc:sqlite:cardDB.db");
             System.out.println("Connected");
             
         }catch (Exception e){

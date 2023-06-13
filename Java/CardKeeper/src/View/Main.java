@@ -13,8 +13,8 @@ import java.awt.event.ActionListener;
 public class Main {
     public static void main(String[] args) {
        //Default table data
-        String data[][]={{"ID", "Name", "Code", "Amount"}};
-        String col[]={"ID", "Name", "Code", "Amount"};
+        String data[][]={{"ID", "Name", "Code","Quality", "Amount"}};
+        String col[]={"ID", "Name", "Code","Quality", "Amount"};
 
         //Initializing components
         DefaultTableModel model = new DefaultTableModel(data, col);
@@ -22,21 +22,25 @@ public class Main {
         JButton testjb = new JButton("Register");
         JLabel l1 = new JLabel("Card Name");
         JLabel l2 = new JLabel("Card Code");
+        JLabel l4 = new JLabel("Card Quality");
         JLabel l3 = new JLabel("Amount of cards");
         JTable jt = new JTable(model);
         JTextField jt1 = new JTextField();
         JTextField jt2 = new JTextField();
         JTextField jt3 = new JTextField();
+        JTextField jt4 = new JTextField();
 
         //Setting component bounds
         jt.setBounds(225,30,400,400);
         l1.setBounds(50,30,150,25);
         l2.setBounds(50,80,150,25);
         l3.setBounds(50,130,150,25);
+        l4.setBounds(50,180,150,25);
         jt1.setBounds(50,50,150,25);
         jt2.setBounds(50,100,150,25);
         jt3.setBounds(50,150,150,25);
-        testjb.setBounds(50,200,95,30);
+        jt4.setBounds(50, 200,150,25);
+        testjb.setBounds(50,250,95,30);
 
         //Adding stuff to the main frame
         Jframe.setSize(800,500);
@@ -44,9 +48,11 @@ public class Main {
         Jframe.add(l1);
         Jframe.add(l2);
         Jframe.add(l3);
+        Jframe.add(l4);
         Jframe.add(jt1);
         Jframe.add(jt2);
         Jframe.add(jt3);
+        Jframe.add(jt4);
         Jframe.add(testjb);
 
         //Action listeners
@@ -58,20 +64,22 @@ public class Main {
 
                 String name = jt1.getText();
                 String code = jt2.getText();
+                String quality = jt4.getText();
                 String amount = jt3.getText();
-                if(name.equals("")||code.equals("")||amount.equals("")){
+                if(name.equals("")||code.equals("")||amount.equals("")||quality.equals("")){
                     JOptionPane.showMessageDialog(Jframe,"Please fill all the fields");
                 }
                 else{
                     cardDTOobject.setCardName(name);
                     cardDTOobject.setCardCode(code);
+                    cardDTOobject.setCardQual(quality);
                     cardDTOobject.setCardNumber(amount);
 
                     cardDAOobject.registerTest(cardDTOobject);
 
 
                     //Adds the registered card to the table
-                    String data[] = {"ID", name, code, amount};
+                    String data[] = {"ID", name, code, quality, amount};
                     model.addRow(data);
 
                     JOptionPane.showMessageDialog(Jframe,"Card registered successfully");

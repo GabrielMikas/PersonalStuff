@@ -1,9 +1,20 @@
 package DTO;
 
+import com.sun.jdi.PrimitiveValue;
+
 public class CardDTO {
     private String cardCode;
    private String cardName;
     private String cardNumber;
+    private String cardQual;
+
+    public String getCardQual() {
+        return cardQual;
+    }
+
+    public void setCardQual(String cardQual) {
+        this.cardQual = cardQual;
+    }
 
     public String getCardCode() {
         return cardCode;
