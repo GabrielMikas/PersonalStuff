@@ -9,17 +9,20 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class Main {
-    public static void main(String[] args) {
-       //Default table data
+
+    public static void initFrame(){
+        CardDTO cardDTOobject = new CardDTO();
+        CardDAO cardDAOobject = new CardDAO();
         String data[][]={{"ID", "Name", "Code","Quality", "Amount"}};
         String col[]={"ID", "Name", "Code","Quality", "Amount"};
-
         //Initializing components
         DefaultTableModel model = new DefaultTableModel(data, col);
         JFrame Jframe = new JFrame();
         JButton testjb = new JButton("Register");
+        JButton readTest = new JButton("Read");
         JLabel l1 = new JLabel("Card Name");
         JLabel l2 = new JLabel("Card Code");
         JLabel l4 = new JLabel("Card Quality");
@@ -41,6 +44,7 @@ public class Main {
         jt3.setBounds(50,150,150,25);
         jt4.setBounds(50, 200,150,25);
         testjb.setBounds(50,250,95,30);
+        readTest.setBounds(50,290,95,30);
 
         //Adding stuff to the main frame
         Jframe.setSize(800,500);
@@ -54,13 +58,29 @@ public class Main {
         Jframe.add(jt3);
         Jframe.add(jt4);
         Jframe.add(testjb);
+        Jframe.add(readTest);
 
         //Action listeners
+        readTest.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                ArrayList<CardDTO> cardlist = cardDAOobject.readCardInfo();
+                System.out.println(cardlist);
+                for(int num = 0; cardlist.size() > num; num++){
+                    model.addRow(new Object[]{
+                            cardlist.get(num).getCardID(),
+                            cardlist.get(num).getCardName(),
+                            cardlist.get(num).getCardCode(),
+                            cardlist.get(num).getCardQual(),
+                            cardlist.get(num).getCardNumber()
+                    });
+                }
+            }
+        });
         testjb.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                CardDTO cardDTOobject = new CardDTO();
-                CardDAO cardDAOobject = new CardDAO();
+
 
                 String name = jt1.getText();
                 String code = jt2.getText();
@@ -79,8 +99,10 @@ public class Main {
 
 
                     //Adds the registered card to the table
+
                     String data[] = {"ID", name, code, quality, amount};
                     model.addRow(data);
+
 
                     JOptionPane.showMessageDialog(Jframe,"Card registered successfully");
                 }
@@ -95,5 +117,10 @@ public class Main {
         Jframe.setLayout(null);
         Jframe.setVisible(true);
 
+    }
+
+    public static void main(String[] args) {
+       //Default table data
+       initFrame();
     }
 }

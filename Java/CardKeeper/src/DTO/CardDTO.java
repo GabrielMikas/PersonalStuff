@@ -7,6 +7,15 @@ public class CardDTO {
    private String cardName;
     private String cardNumber;
     private String cardQual;
+    private int cardID;
+
+    public int getCardID() {
+        return cardID;
+    }
+
+    public void setCardID(int cardID) {
+        this.cardID = cardID;
+    }
 
     public String getCardQual() {
         return cardQual;

@@ -5,10 +5,15 @@ import DTO.CardDTO;
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class CardDAO {
     Connection conn;
     PreparedStatement pstm;
+    ResultSet rs;
+    ArrayList<CardDTO> cardList = new ArrayList<>();
     public void registerTest(CardDTO cardDTOobject){
         String sql = "insert into cards (CardName, CardCode, CardQuality, CardsAmount) values (?, ?, ?, ?)";
         conn = new DBconnection().connect();
@@ -36,5 +41,25 @@ public class CardDAO {
         }
 
     }
-    
+    public ArrayList<CardDTO> readCardInfo(){
+        String sql = "select * from cards";
+        try{
+            conn = new DBconnection().connect();
+            pstm = conn.prepareStatement(sql);
+            rs = pstm.executeQuery();
+            while(rs.next()){
+                CardDTO objcarddto = new CardDTO();
+                objcarddto.setCardID(rs.getInt("CardID"));
+                objcarddto.setCardName(rs.getString("CardName"));
+                objcarddto.setCardCode(rs.getString("CardCode"));
+                objcarddto.setCardQual(rs.getString("CardQuality"));
+                objcarddto.setCardNumber(rs.getString("CardsAmount"));
+                cardList.add(objcarddto);
+
+            }
+        }catch (SQLException e){
+            JOptionPane.showMessageDialog(null, "Problema readCardInfo:" + e);
+        }
+        return cardList;
+    }
 }
