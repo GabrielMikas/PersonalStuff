@@ -15,7 +15,6 @@ public class Main {
 
 
     //It works like this for some reason so do not touch
-    //static String data[][]={{}};
     static String[] col={"ID", "Name", "Code","Quality", "Amount"};
     static DefaultTableModel model = new DefaultTableModel(null, col);
     //It works like this for some reason so do not touch
@@ -27,7 +26,9 @@ public class Main {
         //Initializing components
         JFrame Jframe = new JFrame();
         JButton testjb = new JButton("Register");
-        JButton readTest = new JButton("Read");
+        JButton btnEdit = new JButton("Edit");
+        JButton btnUpdate = new JButton("Update");
+        JButton btnDelete = new JButton("Delete");
         JLabel l1 = new JLabel("Card Name");
         JLabel l2 = new JLabel("Card Code");
         JLabel l4 = new JLabel("Card Quality");
@@ -37,7 +38,9 @@ public class Main {
         JTextField jt2 = new JTextField();
         JTextField jt3 = new JTextField();
         JTextField jt4 = new JTextField();
+        JTextField jt5 = new JTextField();
         JScrollPane pane = new JScrollPane(jt);
+
 
         //Setting component bounds
         pane.setBounds(225,30,400,400);
@@ -49,11 +52,18 @@ public class Main {
         jt2.setBounds(50,100,150,25);
         jt3.setBounds(50,150,150,25);
         jt4.setBounds(50, 200,150,25);
+        jt5.setBounds(50,1,150,25);
         testjb.setBounds(50,250,95,30);
-        readTest.setBounds(50,290,95,30);
+        btnEdit.setBounds(50,330,95,30);
+        btnUpdate.setBounds(50,290,95,30);
+        btnDelete.setBounds(50, 370,95,30);
+
+
+
+        jt5.setEditable(false);
 
         //Adding stuff to the main frame
-        Jframe.setSize(800,500);
+        Jframe.setSize(680,500);
         Jframe.add(pane);
         Jframe.add(l1);
         Jframe.add(l2);
@@ -63,31 +73,41 @@ public class Main {
         Jframe.add(jt2);
         Jframe.add(jt3);
         Jframe.add(jt4);
+        Jframe.add(jt5);
         Jframe.add(testjb);
-        Jframe.add(readTest);
+        Jframe.add(btnUpdate);
+        Jframe.add(btnEdit);
+        Jframe.add(btnDelete);
 
-
-        //Action listeners
-        readTest.addActionListener(new ActionListener() {
+        btnEdit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ArrayList<CardDTO> cardlist = cardDAOobject.readCardInfo();
-                model.setRowCount(0);
-                for(int num = 0; cardlist.size() > num; num++){
-                    model.addRow(new Object[]{
-                            cardlist.get(num).getCardID(),
-                            cardlist.get(num).getCardName(),
-                            cardlist.get(num).getCardCode(),
-                            cardlist.get(num).getCardQual(),
-                            cardlist.get(num).getCardNumber()
-                    });
+                int selectedRow = jt.getSelectedRow();
+                try{
+                    jt5.setText(jt.getModel().getValueAt(selectedRow, 0).toString());
+                    jt1.setText(jt.getModel().getValueAt(selectedRow, 1).toString());
+                    jt2.setText(jt.getModel().getValueAt(selectedRow, 2).toString());
+                    jt3.setText(jt.getModel().getValueAt(selectedRow, 3).toString());
+                    jt4.setText(jt.getModel().getValueAt(selectedRow, 4).toString());
+                } catch (Exception erro){
+                    JOptionPane.showMessageDialog(Jframe, "Please selected a row to edit");
                 }
 
             }
         });
+        btnUpdate.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                //TODO: CALL THE UPDATE FUNCTION FROM DAO
+
+            }
+        });
+        btnDelete.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                //TODO: CALL THE DELETE FUNCTION FROM DAO
+            }
+        });
+        //Action listeners
         testjb.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
-
 
                 String name = jt1.getText();
                 String code = jt2.getText();
@@ -137,6 +157,12 @@ public class Main {
         }
 
     }
+    /*
+    * TODO:
+    *  IMPLEMENT UPDATE FUNCTION IN DAO
+    *  IMPLEMENT DELETE FUNCTION IN DAO
+    *
+    * */
     public static void main(String[] args) {
         initFrame();
         readCards();
