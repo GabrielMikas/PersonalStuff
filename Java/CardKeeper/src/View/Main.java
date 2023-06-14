@@ -15,9 +15,9 @@ public class Main {
 
 
     //It works like this for some reason so do not touch
-    static String data[][]={{"ID", "Name", "Code","Quality", "Amount"}};
-    static String col[]={"ID", "Name", "Code","Quality", "Amount"};
-    static DefaultTableModel model = new DefaultTableModel(data, col);
+    //static String data[][]={{}};
+    static String[] col={"ID", "Name", "Code","Quality", "Amount"};
+    static DefaultTableModel model = new DefaultTableModel(null, col);
     //It works like this for some reason so do not touch
     public static void initFrame(){
         CardDTO cardDTOobject = new CardDTO();
@@ -37,9 +37,10 @@ public class Main {
         JTextField jt2 = new JTextField();
         JTextField jt3 = new JTextField();
         JTextField jt4 = new JTextField();
+        JScrollPane pane = new JScrollPane(jt);
 
         //Setting component bounds
-        jt.setBounds(225,30,400,400);
+        pane.setBounds(225,30,400,400);
         l1.setBounds(50,30,150,25);
         l2.setBounds(50,80,150,25);
         l3.setBounds(50,130,150,25);
@@ -53,7 +54,7 @@ public class Main {
 
         //Adding stuff to the main frame
         Jframe.setSize(800,500);
-        Jframe.add(jt);
+        Jframe.add(pane);
         Jframe.add(l1);
         Jframe.add(l2);
         Jframe.add(l3);
