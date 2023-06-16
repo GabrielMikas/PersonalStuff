@@ -46,8 +46,8 @@ public class Main {
         pane.setBounds(225,30,400,400);
         l1.setBounds(50,30,150,25);
         l2.setBounds(50,80,150,25);
-        l3.setBounds(50,130,150,25);
-        l4.setBounds(50,180,150,25);
+        l4.setBounds(50,130,150,25);
+        l3.setBounds(50,180,150,25);
         jt1.setBounds(50,50,150,25);
         jt2.setBounds(50,100,150,25);
         jt3.setBounds(50,150,150,25);
@@ -61,6 +61,8 @@ public class Main {
 
 
         jt5.setEditable(false);
+        btnUpdate.setEnabled(false);
+        btnDelete.setEnabled(false);
 
         //Adding stuff to the main frame
         Jframe.setSize(680,500);
@@ -88,6 +90,8 @@ public class Main {
                     jt2.setText(jt.getModel().getValueAt(selectedRow, 2).toString());
                     jt3.setText(jt.getModel().getValueAt(selectedRow, 3).toString());
                     jt4.setText(jt.getModel().getValueAt(selectedRow, 4).toString());
+                    btnUpdate.setEnabled(true);
+                    btnDelete.setEnabled(true);
                 } catch (Exception erro){
                     JOptionPane.showMessageDialog(Jframe, "Please selected a row to edit");
                 }
@@ -96,13 +100,37 @@ public class Main {
         });
         btnUpdate.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //TODO: CALL THE UPDATE FUNCTION FROM DAO
+
+                int ID =  Integer.parseInt(jt5.getText());
+                String name = jt1.getText();
+                String code = jt2.getText();
+                String quality = jt3.getText();
+                String amount = jt4.getText();
+                if(name.equals("")||code.equals("")||amount.equals("")||quality.equals("")){
+                    JOptionPane.showMessageDialog(Jframe,"Please fill all the fields");
+                }
+                else{
+                    cardDTOobject.setCardID(ID);
+                    cardDTOobject.setCardName(name);
+                    cardDTOobject.setCardCode(code);
+                    cardDTOobject.setCardQual(quality);
+                    cardDTOobject.setCardNumber(amount);
+                    cardDAOobject.UpdateCard(cardDTOobject);
+                    readCards();
 
             }
-        });
+        }});
         btnDelete.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //TODO: CALL THE DELETE FUNCTION FROM DAO
+                int ID =  Integer.parseInt(jt5.getText());
+                if(jt5.getText().equals("")){
+                    JOptionPane.showMessageDialog(Jframe, "Please click the Edit button");
+                }else{
+                    cardDTOobject.setCardID(ID);
+                    cardDAOobject.DeleteCard(cardDTOobject);
+                    readCards();
+                }
+
             }
         });
         //Action listeners
@@ -111,8 +139,8 @@ public class Main {
 
                 String name = jt1.getText();
                 String code = jt2.getText();
-                String quality = jt4.getText();
-                String amount = jt3.getText();
+                String quality = jt3.getText();
+                String amount = jt4.getText();
                 if(name.equals("")||code.equals("")||amount.equals("")||quality.equals("")){
                     JOptionPane.showMessageDialog(Jframe,"Please fill all the fields");
                 }
@@ -157,12 +185,6 @@ public class Main {
         }
 
     }
-    /*
-    * TODO:
-    *  IMPLEMENT UPDATE FUNCTION IN DAO
-    *  IMPLEMENT DELETE FUNCTION IN DAO
-    *
-    * */
     public static void main(String[] args) {
         initFrame();
         readCards();

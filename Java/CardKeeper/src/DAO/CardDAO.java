@@ -62,4 +62,40 @@ public class CardDAO {
         }
         return cardList;
     }
+    public void UpdateCard(CardDTO cardDTOobject){
+        String sql = "update cards set CardName = ?, CardCode = ?, CardQuality = ?, CardsAmount = ? where CardID = ?";
+        conn = new DBconnection().connect();
+        int ID;
+        String name, code, quality, amount;
+
+        ID = cardDTOobject.getCardID();
+        name = cardDTOobject.getCardName();
+        code = cardDTOobject.getCardCode();
+        quality = cardDTOobject.getCardQual();
+        amount = cardDTOobject.getCardNumber();
+        try {
+            pstm = conn.prepareStatement(sql);
+            pstm.setString(1, name);
+            pstm.setString(2, code);
+            pstm.setString(3, quality);
+            pstm.setString(4, amount);
+            pstm.setInt(5, ID);
+            pstm.execute();
+            pstm.close();
+    } catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Erro no UpdateCard:" + e);
+        }}
+    public void DeleteCard(CardDTO cardDTOobject){
+        String sql = "delete from cards where CardID = ?";
+        int ID = cardDTOobject.getCardID();
+        conn = new DBconnection().connect();
+        try {
+            pstm = conn.prepareStatement(sql);
+            pstm.setInt(1, ID);
+            pstm.execute();
+            pstm.close();
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Erro no DeleteCard:" + e);
+        }
+    }
 }
