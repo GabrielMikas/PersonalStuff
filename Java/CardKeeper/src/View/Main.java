@@ -43,13 +43,14 @@ public class Main {
         JScrollPane pane = new JScrollPane(jt);
 
 
-        //Setting component bounds
-        pane.setBounds(525,30,400,400);
+        pane.setBounds(300,30,400,400);
+        
         l1.setBounds(75,80,150,25);
         l2.setBounds(75,130,150,25);
         l4.setBounds(75,180,150,25);
         l3.setBounds(75,230,150,25);
         l5.setBounds(75,30,150,25);
+
         jt1.setBounds(75,100,150,25);
         jt2.setBounds(75,150,150,25);
         jt3.setBounds(75,200,150,25);
@@ -68,7 +69,7 @@ public class Main {
         btnDelete.setEnabled(false);
 
         //Adding stuff to the main frame
-        Jframe.setSize(980,800);
+        Jframe.setSize(760,500);
         Jframe.add(pane);
         Jframe.add(l1);
         Jframe.add(l2);
