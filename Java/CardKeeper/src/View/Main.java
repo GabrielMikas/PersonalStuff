@@ -33,6 +33,7 @@ public class Main {
         JLabel l2 = new JLabel("Card Code");
         JLabel l4 = new JLabel("Card Quality");
         JLabel l3 = new JLabel("Amount of cards");
+        JLabel l5 = new JLabel("Card ID");
         JTable jt = new JTable(model);
         JTextField jt1 = new JTextField();
         JTextField jt2 = new JTextField();
@@ -43,20 +44,22 @@ public class Main {
 
 
         //Setting component bounds
-        pane.setBounds(225,30,400,400);
-        l1.setBounds(50,30,150,25);
-        l2.setBounds(50,80,150,25);
-        l4.setBounds(50,130,150,25);
-        l3.setBounds(50,180,150,25);
-        jt1.setBounds(50,50,150,25);
-        jt2.setBounds(50,100,150,25);
-        jt3.setBounds(50,150,150,25);
-        jt4.setBounds(50, 200,150,25);
-        jt5.setBounds(50,1,150,25);
-        testjb.setBounds(50,250,95,30);
-        btnEdit.setBounds(50,330,95,30);
-        btnUpdate.setBounds(50,290,95,30);
-        btnDelete.setBounds(50, 370,95,30);
+        pane.setBounds(525,30,400,400);
+        l1.setBounds(75,80,150,25);
+        l2.setBounds(75,130,150,25);
+        l4.setBounds(75,180,150,25);
+        l3.setBounds(75,230,150,25);
+        l5.setBounds(75,30,150,25);
+        jt1.setBounds(75,100,150,25);
+        jt2.setBounds(75,150,150,25);
+        jt3.setBounds(75,200,150,25);
+        jt4.setBounds(75, 250,150,25);
+        jt5.setBounds(75,50,150,25);
+
+        testjb.setBounds(50,300,95,30);
+        btnEdit.setBounds(50,350,95,30);
+        btnUpdate.setBounds(155,300,95,30);
+        btnDelete.setBounds(155, 350,95,30);
 
 
 
@@ -65,12 +68,13 @@ public class Main {
         btnDelete.setEnabled(false);
 
         //Adding stuff to the main frame
-        Jframe.setSize(680,500);
+        Jframe.setSize(980,800);
         Jframe.add(pane);
         Jframe.add(l1);
         Jframe.add(l2);
         Jframe.add(l3);
         Jframe.add(l4);
+        Jframe.add(l5);
         Jframe.add(jt1);
         Jframe.add(jt2);
         Jframe.add(jt3);
