@@ -10,5 +10,8 @@ public class RestControlTest {
     public void ReceiveCards(@RequestBody cardsDTO objCardsDTO){
         System.out.println(objCardsDTO);
     }
-
+/*
+* TODO:
+*  NEED TO CONFIGURE THE SQL STUFF AND THE OTHER REQUESTS
+* */
 }

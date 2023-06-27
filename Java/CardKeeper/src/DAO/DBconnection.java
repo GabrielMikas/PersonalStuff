@@ -9,8 +9,9 @@ public class DBconnection {
     public Connection connect() {
         Connection connect = null;
         try{
-            Class.forName("org.sqlite.JDBC");
-           connect = DriverManager.getConnection("jdbc:sqlite:cardDB.db");
+            String url ="jdbc:mysql://localhost:3306/cards?user=root&password=root";
+            //Class.forName("com.mysql.jdbc.Driver");
+           connect = DriverManager.getConnection(url);
             System.out.println("Connected");
             
         }catch (Exception e){
