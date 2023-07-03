@@ -20,10 +20,26 @@ public class Cards {
     private String CardQuality;
     private String CardsAmount;
 
-    public Cards(cardsDTO objCardsDTO) {
+    public Cards(CardsPostDTO objCardsDTO) {
         this.CardName = objCardsDTO.CardName();
         this.CardCode = objCardsDTO.CardCode();
         this.CardQuality = objCardsDTO.CardQuality();
         this.CardsAmount = objCardsDTO.CardsAmount();
+    }
+
+    public void Update(CardsPutDTO cardsPUT){
+        if(cardsPUT.CardName() != null){
+            this.CardName = cardsPUT.CardName();
+        }
+        if(cardsPUT.CardCode() != null){
+            this.CardCode = cardsPUT.CardCode();
+        }
+        if(cardsPUT.CardQuality() != null){
+            this.CardQuality = cardsPUT.CardQuality();
+        }
+        if(cardsPUT.CardsAmount() != null){
+            this.CardsAmount = cardsPUT.CardsAmount();
+        }
+
     }
 }

@@ -15,10 +15,10 @@ fetch('http://localhost:8080/cards')
         let cardsAmount = document.createElement("p")
         let cardQuality = document.createElement("p")
         
-        cardName.innerHTML = `Name: ${cardData.cardName}`
-        cardCode.innerHTML = `Code: ${cardData.cardCode}`
-        cardsAmount.innerHTML = `Number of cards: ${cardData.cardsAmount}`
-        cardQuality.innerHTML = `Card Quality: ${cardData.cardQuality}`
+        cardName.innerHTML = `Name: ${cardData.CardName}`
+        cardCode.innerHTML = `Code: ${cardData.CardCode}`
+        cardsAmount.innerHTML = `Number of cards: ${cardData.CardsAmount}`
+        cardQuality.innerHTML = `Card Quality: ${cardData.CardQuality}`
         col.classList.add("col-2")
         col.classList.add("text-center")
         card.classList.add("card")
